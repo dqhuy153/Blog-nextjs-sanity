@@ -1,0 +1,17 @@
+.btn {
+  cursor: pointer;
+  transition: all 0.2s linear;
+  &:hover {
+    border-bottom: 3px solid #db890e;
+  }
+}
+.btn_primary {
+  cursor: pointer;
+  transition: all 0.2s linear;
+
+  &:hover {
+    background: transparent;
+    border: 2px solid #db890e;
+    color: #db890e;
+  }
+}
