@@ -3,7 +3,7 @@ import { TypedObject } from '@portabletext/react'
 export interface PostResponse {
   _id: string
   _createdAt: string
-  author: {
+  user: {
     image: SanityImageSource
     name: string
     slug: {

@@ -1,6 +1,6 @@
 export default {
-  name: 'author',
-  title: 'Author',
+  name: 'user',
+  title: 'User',
   type: 'document',
   fields: [
     {
@@ -26,6 +26,17 @@ export default {
       },
     },
     {
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+    },
+    {
+      // this is only if you use credentials provider
+      name: 'password',
+      type: 'string',
+      hidden: true,
+    },
+    {
       name: 'bio',
       title: 'Bio',
       type: 'array',
@@ -33,7 +44,7 @@ export default {
         {
           title: 'Block',
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
         },
       ],

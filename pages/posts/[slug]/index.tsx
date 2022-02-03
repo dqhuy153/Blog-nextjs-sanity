@@ -6,14 +6,14 @@ import { sanityClient } from '../../../lib/sanity/server'
 import { PostResponse } from '../../../typings'
 import DefaultThumbnail from '../../../public/images/pexels-tyler-lastovich-1022411.jpg'
 import EmptyAvatar from '../../../public/images/emptyAvatar.png'
-import DefaultAvatar from '../../../public/images/avatar.jpg'
 import { useRouter } from 'next/router'
 // import PortableText from 'react-portable-text'
 import { PortableText } from '@portabletext/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Footer from '../../../components/Footer'
-import urlBuilder from '@sanity/image-url'
 import { getImageDimensions } from '@sanity/asset-utils'
+import { useRecoilState } from 'recoil'
+import { authState } from '../../../recoil/auth'
 
 // Barebones lazy-loaded image component
 export const ImageComponent = ({ value, isInline }: any) => {
@@ -172,6 +172,7 @@ const Post = ({ post, otherPosts }: Props) => {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [submitted, setSubmitted] = useState<boolean>(false)
+  const [authData] = useRecoilState(authState)
 
   const {
     register,
@@ -227,19 +228,19 @@ const Post = ({ post, otherPosts }: Props) => {
         <div className="flex items-center justify-start space-x-3 py-4">
           <div className="relative h-11 w-11 cursor-pointer overflow-hidden rounded-full">
             <Image
-              src={urlFor(post.author.image).url() || DefaultAvatar}
+              src={urlFor(post.user.image).url() || EmptyAvatar}
               layout="fill"
               objectFit="cover"
-              onClick={() => handleGoToUserDetail(post.author.slug.current)}
+              onClick={() => handleGoToUserDetail(post.user.slug.current)}
             />
           </div>
           <p className="mt-1 text-center text-sm font-normal">
             Blog post by{' '}
             <span
               className="cursor-pointer font-bold hover:underline"
-              onClick={() => handleGoToUserDetail(post.author.slug.current)}
+              onClick={() => handleGoToUserDetail(post.user.slug.current)}
             >
-              {post.author.name}
+              {post.user.name}
             </span>{' '}
             - published at {new Date(post._createdAt).toLocaleDateString()}
           </p>
@@ -298,6 +299,7 @@ const Post = ({ post, otherPosts }: Props) => {
               className="form-input mt-2 block w-full rounded border py-2 px-3 shadow outline-none ring-0 ring-orange-300 focus:ring"
               type="text"
               placeholder="Enter your name"
+              value={authData?.user?.name || ''}
             />
             {errors.name && (
               <p className="mt-2 text-red-500">Field is required.</p>
@@ -310,6 +312,7 @@ const Post = ({ post, otherPosts }: Props) => {
               className="form-input mt-2 block w-full rounded border py-2 px-3 shadow outline-none ring-0 ring-orange-300 focus:ring"
               type="email"
               placeholder="Enter your email"
+              value={authData?.user?.email || ''}
             />
             {errors.email && (
               <p className="mt-2 text-red-500">Field is required.</p>
@@ -353,7 +356,7 @@ const Post = ({ post, otherPosts }: Props) => {
                       layout="fill"
                       objectFit="cover"
                       // onClick={() =>
-                      //   handleGoToUserDetail(comment.author.slug.current)
+                      //   handleGoToUserDetail(comment.user.slug.current)
                       // }
                     />
                   </div>
@@ -408,7 +411,7 @@ export const getStaticProps = async ({
     _id,
     _createdAt,
     title,
-    author -> {
+    user -> {
       name,
       image,
       slug
@@ -427,7 +430,7 @@ export const getStaticProps = async ({
   _id,
   _createdAt,
   title,
-  author -> {
+  user -> {
     name,
     image,
     slug

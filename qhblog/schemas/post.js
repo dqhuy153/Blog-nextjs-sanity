@@ -24,10 +24,10 @@ export default {
       },
     },
     {
-      name: 'author',
-      title: 'Author',
+      name: 'user',
+      title: 'User',
       type: 'reference',
-      to: { type: 'author' },
+      to: { type: 'user' },
     },
     {
       name: 'mainImage',
@@ -58,13 +58,13 @@ export default {
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
+      user: 'user.name',
       media: 'mainImage',
     },
     prepare(selection) {
-      const { author } = selection
+      const { user } = selection
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
+        subtitle: user && `by ${user}`,
       })
     },
   },

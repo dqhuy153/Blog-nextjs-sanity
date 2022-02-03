@@ -5,9 +5,14 @@ import { urlFor } from '../lib/sanity/helpers'
 import { sanityClient } from '../lib/sanity/server'
 import { PostResponse } from '../typings'
 import DefaultThumbnail from '../public/images/pexels-tyler-lastovich-1022411.jpg'
-import DefaultAvatar from '../public/images/avatar.jpg'
+import EmptyAvatar from '../public/images/emptyAvatar.png'
 import { useRouter } from 'next/router'
 import Footer from '../components/Footer'
+import { useSession } from 'next-auth/react'
+import { useRecoilState } from 'recoil'
+import { authState } from '../recoil/auth'
+import { useEffect } from 'react'
+import { isEmpty } from 'lodash'
 
 interface Props {
   posts: PostResponse[]
@@ -17,6 +22,24 @@ const MAX_RELATED_POSTS = 6
 
 export default function Home({ posts }: Props) {
   const router = useRouter()
+  const { data: session } = useSession()
+  const [authData, setAuthData] = useRecoilState(authState)
+
+  useEffect(() => {
+    if (isEmpty(session) || !session || !session?.user || !authData) {
+      setAuthData((prev) => ({
+        user: null,
+        isAuthenticated: false,
+        expires: null,
+      }))
+    } else {
+      setAuthData({
+        user: session?.user,
+        isAuthenticated: true,
+        expires: session?.expires,
+      })
+    }
+  }, [session])
 
   const handleGoToPostDetail = (slug: string) => {
     router.push(`/posts/${slug}`)
@@ -26,9 +49,9 @@ export default function Home({ posts }: Props) {
   }
 
   return (
-    <div className="min-h-[80vh]">
+    <div className="relative min-h-[80vh]">
       <Head>
-        <title>QH Blog</title>
+        <title>Blog.</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -43,12 +66,12 @@ export default function Home({ posts }: Props) {
           </h1>
           <h2>
             It's easy and free to post your thinking on any topic and connect
-            with millions of readers.
+            with others readers.
           </h2>
         </div>
 
         {/* Posts */}
-        <div className="grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 md:gap-6 md:p-4 lg:grid-cols-3 lg:py-4 xl:px-0">
+        <div className="mt-2 grid grid-cols-1 gap-3 p-2 sm:grid-cols-2 md:gap-6 md:p-4 lg:grid-cols-3 lg:py-4 xl:px-0">
           {posts.slice(0, MAX_RELATED_POSTS).map((post) => (
             <div className="group">
               <div
@@ -69,22 +92,23 @@ export default function Home({ posts }: Props) {
                 >
                   <p className="text-lg font-bold">{post.title}</p>
                   <p className="mt-1 text-sm font-[400] text-gray-500">
-                    {post.description}
+                    {post.description.slice(0, 80)}
+                    {post.description.length > 80 && '...'}
                   </p>
                 </div>
                 <div
                   className="flex w-3/12 flex-col items-center justify-center"
-                  onClick={() => handleGoToUserDetail(post.author.slug.current)}
+                  onClick={() => handleGoToUserDetail(post.user.slug.current)}
                 >
                   <div className="relative h-11 w-11 overflow-hidden rounded-full">
                     <Image
-                      src={urlFor(post.author.image).url() || DefaultAvatar}
+                      src={urlFor(post?.user?.image).url() || EmptyAvatar}
                       layout="fill"
                       objectFit="cover"
                     />
                   </div>
                   <p className="mt-1 w-full text-center text-xs font-medium">
-                    {post.author.name}
+                    {post.user.name}
                   </p>
                 </div>
               </div>
@@ -104,7 +128,7 @@ export const getServerSideProps = async () => {
   _id,
   _createdAt,
   title,
-  author -> {
+  user -> {
     name,
     image,
     slug

@@ -39,7 +39,7 @@ const Footer = ({ posts, showOtherPosts = true }: Props) => {
                     {post.title}
                   </p>
                   <p className="text-xs font-medium text-gray-400 transition-all duration-300 ease-in-out group-hover:text-gray-600">
-                    {post.author.name} -{' '}
+                    {post.user.name} -{' '}
                     {new Date(post._createdAt).toLocaleDateString()}
                   </p>
                 </div>

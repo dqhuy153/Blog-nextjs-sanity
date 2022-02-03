@@ -34,16 +34,16 @@ export default {
   preview: {
     select: {
       title: 'comment',
-      author: 'name',
+      user: 'name',
       approved: 'approved',
       media: 'post.mainImage',
     },
     prepare(selection) {
-      const { author, approved } = selection
+      const { user, approved } = selection
       return Object.assign({}, selection, {
         subtitle:
-          author &&
-          `by ${author} (${
+          user &&
+          `by ${user} (${
             approved === false
               ? 'not approved'
               : approved
