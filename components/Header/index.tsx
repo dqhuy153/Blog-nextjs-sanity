@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { authState } from '../../recoil/auth'
 import EmptyAvatar from '../../public/images/emptyAvatar.png'
@@ -9,11 +9,13 @@ import { Menu, Transition } from '@headlessui/react'
 import styles from './styles.module.scss'
 import { signOut } from 'next-auth/react'
 import { AiOutlineLogout } from 'react-icons/ai'
+import { RiUserFollowLine } from 'react-icons/ri'
 
 type Props = {}
 
 const Header = (props: Props) => {
   const [authData, setAuthData] = useRecoilState(authState)
+  const [isFollow, setIsFollow] = React.useState(false)
 
   const handleSignOut = () => {
     signOut()
@@ -22,6 +24,27 @@ const Header = (props: Props) => {
       user: null,
       expires: null,
     })
+  }
+
+  useEffect(() => {
+    const followStatus = localStorage.getItem('follow')
+    if (!followStatus) {
+      setIsFollow(false)
+    } else {
+      setIsFollow(true)
+    }
+  }, [])
+
+  const handleFollowClick = () => {
+    const followStatus = isFollow ?? localStorage.getItem('follow')
+    if (!followStatus) {
+      Notification.requestPermission()
+      localStorage.setItem('follow', '1')
+      setIsFollow(true)
+    } else {
+      localStorage.removeItem('follow')
+      setIsFollow(false)
+    }
   }
 
   return (
@@ -37,10 +60,15 @@ const Header = (props: Props) => {
             <h3
               className={classNames(
                 styles.btn_primary,
-                'rounded-full bg-orange-500 py-1 px-4 text-white hover:py-[1px]'
+                isFollow
+                  ? 'flex items-center border border-orange-500 text-orange-500'
+                  : 'bg-orange-500 text-white',
+                'rounded-full px-4 py-1 hover:py-[1px]'
               )}
+              onClick={handleFollowClick}
             >
-              Follow
+              {isFollow && <RiUserFollowLine className="mr-3" />}
+              {isFollow ? 'Following' : 'Follow'}
             </h3>
           </div>
         </div>
