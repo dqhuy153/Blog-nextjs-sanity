@@ -17,25 +17,6 @@ interface Props {
 const MAX_RELATED_POSTS = 6
 
 export default function Home({ posts }: Props) {
-  const { data: session } = useSession()
-  const [authData, setAuthData] = useRecoilState(authState)
-
-  useEffect(() => {
-    if (isEmpty(session) || !session || !session?.user || !authData) {
-      setAuthData((prev) => ({
-        user: null,
-        isAuthenticated: false,
-        expires: null,
-      }))
-    } else {
-      setAuthData({
-        user: session?.user,
-        isAuthenticated: true,
-        expires: session?.expires,
-      })
-    }
-  }, [session])
-
   return (
     <div className="relative min-h-[80vh]">
       <Head>
