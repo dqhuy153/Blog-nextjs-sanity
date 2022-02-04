@@ -66,7 +66,7 @@ export default function Home({ posts }: Props) {
           </h1>
           <h2 className="max-w-3xl">
             This blog, in the first place, is where I'm learning to code with a
-            new stack. But over time, I think they could be a good place to
+            new stack. But over time, I think it could be a good place to
             share about my life, my knowledge with others. Welcome!
           </h2>
         </div>
