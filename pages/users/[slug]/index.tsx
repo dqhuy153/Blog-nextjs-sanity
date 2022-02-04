@@ -4,12 +4,9 @@ import EmptyAvatar from '../../../public/images/emptyAvatar.png'
 import Header from '../../../components/Header'
 import { urlFor } from '../../../lib/sanity/helpers'
 import Footer from '../../../components/Footer'
-import { PostResponse, UserResponse } from '../../../typings'
+import { UserResponse } from '../../../typings'
 import { sanityClient } from '../../../lib/sanity/server'
 import PostItem from '../../../components/PostItem'
-import { PortableText } from '@portabletext/react'
-import { portableTextComponents } from '../../posts/[slug]'
-import { RiMailFill, RiMailLine } from 'react-icons/ri'
 
 interface Props {
   user: UserResponse

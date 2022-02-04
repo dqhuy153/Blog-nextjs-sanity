@@ -47,7 +47,7 @@ export default function Home({ posts }: Props) {
         <Header />
 
         {/* Banner */}
-        <div className="mt-20 space-y-5 border-black bg-yellow-400 py-10 px-10">
+        <div className="mt-16 space-y-5 rounded-b-2xl border-black bg-orange-200 py-14 px-10 md:mt-20 md:py-20">
           <h1 className="max-w-2xl font-serif text-6xl">
             <span className="underline">Blog</span> is a place to write, read
             and connect.
