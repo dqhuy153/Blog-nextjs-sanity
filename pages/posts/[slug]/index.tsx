@@ -212,7 +212,7 @@ const Post = ({ post, otherPosts }: Props) => {
       <Header />
 
       {/* Banner */}
-      <div className="relative mt-20 h-48 w-full overflow-hidden bg-gray-800">
+      <div className="relative mt-16 h-48 w-full overflow-hidden bg-gray-800">
         <Image
           src={urlFor(post.mainImage).url() || DefaultThumbnail}
           layout="fill"
@@ -347,8 +347,8 @@ const Post = ({ post, otherPosts }: Props) => {
         </h3>
         {post.comments &&
           post.comments.map((comment) => (
-            <div className="mx-auto mb-3 flex max-w-3xl rounded-xl border p-4">
-              <div className="mr-4 flex w-3/12 items-center justify-between">
+            <div className="mx-auto mb-3 block max-w-3xl rounded-xl border p-4 md:flex">
+              <div className="mr-4 flex w-full items-center justify-between md:w-3/12">
                 <div className="flex items-center">
                   <div className="relative h-11 w-11 cursor-pointer overflow-hidden rounded-full">
                     <Image
@@ -368,7 +368,7 @@ const Post = ({ post, otherPosts }: Props) => {
                   </div>
                 </div>
               </div>
-              <p className="mt-4">{comment.comment}</p>
+              <p className="mt-2 ml-1 w-full md:w-9/12">{comment.comment}</p>
             </div>
           ))}
       </div>

@@ -49,7 +49,7 @@ const Header = (props: Props) => {
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 bg-white">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between  py-4 px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between py-4 px-6">
         <div className="flex items-center space-x-12 ">
           <div className="w-50 cursor-pointer object-contain text-2xl font-medium">
             <Link href="/">Blog.</Link>
@@ -80,7 +80,7 @@ const Header = (props: Props) => {
             >
               <div>
                 <Menu.Button className="flex items-center justify-center">
-                  <div className="relative mr-3 h-10 w-10 overflow-hidden rounded-full">
+                  <div className="relative mr-3 h-8 w-8 overflow-hidden rounded-full">
                     <Image
                       src={authData.user?.image || EmptyAvatar}
                       layout="fill"

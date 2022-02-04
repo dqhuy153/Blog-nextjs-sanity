@@ -17,7 +17,7 @@ const Footer = ({ posts, showOtherPosts = true }: Props) => {
   return (
     <footer className="absolute bottom-0 right-0 left-0 h-0">
       {showOtherPosts && posts && (
-        <div className="container  mx-auto max-w-3xl p-6">
+        <div className="container mx-auto max-w-3xl p-4 md:mb-8">
           <h3 className="mb-8 text-xl font-medium">Related Posts</h3>
           <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-3">
             {posts?.map((post) => (
@@ -34,7 +34,7 @@ const Footer = ({ posts, showOtherPosts = true }: Props) => {
                   />
                 </div>
 
-                <div className="absolute top-0 left-0 p-4">
+                <div className="xs:border-none rounded-b-xl p-4 ">
                   <p className="text-lg font-medium text-gray-500 transition-all duration-300 ease-in-out group-hover:text-black">
                     {post.title}
                   </p>
@@ -49,11 +49,11 @@ const Footer = ({ posts, showOtherPosts = true }: Props) => {
         </div>
       )}
 
-      <div className="bg-sky-900 p-3 text-center text-white">
-        <a className="text-white" href="/">
+      <div className="bg-sky-900 p-2 text-center text-sm text-white">
+        <a className="text-sm text-white" href="/">
           Blog.{' '}
         </a>
-        © 2022 Copyright
+        ©2022 Copyright
       </div>
     </footer>
   )
