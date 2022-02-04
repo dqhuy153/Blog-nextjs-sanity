@@ -61,12 +61,13 @@ export default function Home({ posts }: Props) {
         {/* Banner */}
         <div className="mt-20 space-y-5 border-black bg-yellow-400 py-10 px-10">
           <h1 className="max-w-2xl font-serif text-6xl">
-            <span className="underline">Blog</span> is a place to write, read,
+            <span className="underline">Blog</span> is a place to write, read
             and connect.
           </h1>
           <h2>
-            It's easy and free to post your thinking on any topic and connect
-            with others readers.
+            This blog, in the first place, is where I'm learning to code with a
+            new stack. But over time, I think they could be a good place to
+            share about my life, my knowledge with others. Welcome!
           </h2>
         </div>
 
