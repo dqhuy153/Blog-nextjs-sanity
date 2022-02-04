@@ -242,7 +242,8 @@ const Post = ({ post, otherPosts }: Props) => {
             >
               {post.user.name}
             </span>{' '}
-            - published at {new Date(post._createdAt).toLocaleDateString()}
+            - published at{' '}
+            {new Date(post._createdAt).toLocaleDateString('en-GB')}
           </p>
         </div>
         <div>
@@ -363,7 +364,7 @@ const Post = ({ post, otherPosts }: Props) => {
                   <div className="ml-3">
                     <p className="text-sm font-bold">{comment.name}</p>
                     <p className="text-xs text-gray-500">
-                      {new Date(comment._createdAt).toLocaleDateString()}
+                      {new Date(comment._createdAt).toLocaleDateString('en-GB')}
                     </p>
                   </div>
                 </div>
@@ -382,7 +383,7 @@ export default Post
 
 export const getStaticPaths = async () => {
   const query = `*[_type == "post"]{
-    id,
+    _id,
     slug {
       current
     }

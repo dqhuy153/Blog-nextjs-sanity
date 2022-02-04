@@ -20,6 +20,22 @@ export interface PostResponse {
   body: TypedObject[]
 }
 
+export interface UserResponse {
+  _createdAt: string
+  _id: string
+  _type: 'user'
+  _updatedAt: string
+  bio: TypedObject[]
+  email: string
+  image: SanityImageSource
+  name: string
+  slug: {
+    _type: 'slug'
+    current: string
+  }
+  posts: PostResponse[]
+}
+
 export interface BodyPostResponse {
   _key: string
   _type: string
