@@ -234,7 +234,7 @@ const Post = ({ post, otherPosts }: Props) => {
               onClick={() => handleGoToUserDetail(post.user.slug.current)}
             />
           </div>
-          <p className="mt-1 text-center text-sm font-normal">
+          <p className="mt-1 text-sm font-normal">
             Blog post by{' '}
             <span
               className="cursor-pointer font-bold hover:underline"
