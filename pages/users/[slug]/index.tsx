@@ -29,7 +29,7 @@ export default function Home({ user }: Props) {
 
         {/* Info */}
         <div className="mt-20 space-y-5 rounded-2xl bg-orange-50 py-10 px-10 transition-all duration-300 hover:shadow-xl">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-start md:justify-center">
             <div className="relative h-20 w-20 overflow-hidden rounded-full">
               <Image
                 src={urlFor(user?.image).url() || EmptyAvatar}
