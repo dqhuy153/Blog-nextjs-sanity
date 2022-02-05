@@ -1,3 +1,3 @@
-# Next.js TS + Tailwind CSS + Sanity Studio
+# Next.js TS + Tailwind CSS + Recoil + Sanity Studio
 
 Sanity admin url: https://huyblog.sanity.studio/
