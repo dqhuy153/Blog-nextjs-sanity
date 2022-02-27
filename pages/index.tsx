@@ -30,13 +30,12 @@ export default function Home({ posts }: Props) {
         {/* Banner */}
         <div className="mt-16 space-y-5 rounded-b-2xl border-black bg-orange-200 py-14 px-10 md:mt-20 md:py-20">
           <h1 className="max-w-2xl font-serif text-6xl">
-            <span className="underline">Blog</span> is a place to write, read
-            and connect.
+            Just a simple <span className="underline">Blog</span>
           </h1>
           <h2 className="max-w-3xl">
-            This blog, in the first place, is where I'm learning to code with a
-            new stack. But over time, I think it could be a good place to share
-            about my life, my knowledge with others. Welcome!
+            This blog, in the first place, is where I'm learning to code with
+            new stacks. But over time, I think it could be a good place to share
+            about my stories with others. Welcome!
           </h2>
         </div>
 
