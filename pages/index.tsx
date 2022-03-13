@@ -24,19 +24,21 @@ export default function Home({ posts }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto max-w-7xl">
+      <main className="mx-auto min-h-screen max-w-7xl">
         <Header />
 
         {/* Banner */}
-        <div className="mt-16 space-y-5 rounded-b-2xl border-black bg-orange-200 py-14 px-10 md:mt-20 md:py-20">
-          <h1 className="max-w-2xl font-serif text-6xl">
-            Just a simple <span className="underline">Blog</span>
-          </h1>
-          <h2 className="max-w-3xl">
-            This blog, in the first place, is where I'm learning to code with
-            new stacks. But over time, I think it could be a good place to share
-            about my stories with others. Welcome!
-          </h2>
+        <div className="mt-16">
+          <div className="hidden space-y-5 rounded-b-2xl border-black bg-orange-200 py-14 px-10 md:mt-20 md:block md:py-20">
+            <h1 className="max-w-2xl font-serif text-6xl">
+              Just a simple <span className="underline">Blog</span>
+            </h1>
+            <h2 className="max-w-3xl">
+              This blog, in the first place, is where I'm learning to code with
+              new stacks. But over time, I think it could be a good place to
+              share my stories with others. Welcome!
+            </h2>
+          </div>
         </div>
 
         {/* Posts */}
