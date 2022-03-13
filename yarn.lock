@@ -1218,7 +1218,7 @@ nanoid@^3.1.30, nanoid@^3.2.0:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.2.0.tgz#62667522da6673971cca916a6d3eff3f415ff80c"
   integrity sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==
 
-next-auth-sanity@^1.4.0:
+next-auth-sanity@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/next-auth-sanity/-/next-auth-sanity-1.3.0.tgz#0ead2f8b200a47cd354399fb3b99b8fa23b37a64"
   integrity sha512-UYHWVnLqDwfePtiBxg41A8XVjF1KKgvj58oIE+dkYEKak6XZcbbPF/Z3rdNykxzsnWdjOA7//rzDEAe16rY7qA==

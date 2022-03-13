@@ -7,6 +7,8 @@ import Footer from '../../../components/Footer'
 import { UserResponse } from '../../../typings'
 import { sanityClient } from '../../../lib/sanity/server'
 import PostItem from '../../../components/PostItem'
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { RiMailLine } from 'react-icons/ri'
 
 interface Props {
   user: UserResponse
@@ -18,7 +20,7 @@ export default function Home({ user }: Props) {
   const posts = user.posts || []
 
   return (
-    <div className="relative min-h-[80vh]">
+    <div className="relative min-h-screen">
       <Head>
         <title>Blog.</title>
         <link rel="icon" href="/favicon.ico" />
@@ -30,22 +32,64 @@ export default function Home({ user }: Props) {
         {/* Info */}
         <div className="mt-20 space-y-5 rounded-2xl bg-orange-50 py-10 px-10 transition-all duration-300 hover:shadow-xl">
           <div className="flex items-center justify-start md:justify-center">
-            <div className="relative h-20 w-20 overflow-hidden rounded-full">
-              <Image
-                src={urlFor(user?.image).url() || EmptyAvatar}
-                layout="fill"
-                objectFit="cover"
-              />
+            <div className="flex flex-col items-center">
+              <div className="relative h-20 w-20 overflow-hidden rounded-full">
+                <Image
+                  src={urlFor(user?.image).url() || EmptyAvatar}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              <p className="mt-1 text-xl font-light">{user.name}</p>
             </div>
-            <div className="ml-5">
-              <p className="mt-1 text-2xl font-light">{user.name}</p>
-
-              <p>{user.posts.length} posts</p>
+            <div className="ml-10">
+              <div className="">
+                <p>Developer</p>
+                <a
+                  href="https://huyy.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500"
+                >
+                  Projects page
+                </a>
+              </div>
+              <p className="mt-5">{user.posts.length} posts</p>
 
               {/* <div className="mt-3 flex items-center">
                 <RiMailLine />
                 <p className="ml-1">{user.email}</p>
               </div> */}
+              <div className="mt-2  hidden md:flex">
+                <a
+                  href="https://www.facebook.com/huy15399/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook size={18} className="mr-2" />
+                </a>
+                <a
+                  href="https://www.instagram.com/huy.dangq/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <FaInstagram size={18} className="mr-2" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/huy-dang-b2a247207/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <FaLinkedin className="mr-2" size={18} />
+                </a>
+                <a
+                  href="mailto:dqhuy153@gmail.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <RiMailLine size={19} />
+                </a>
+              </div>
             </div>
           </div>
         </div>

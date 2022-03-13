@@ -3,11 +3,7 @@ import Header from '../components/Header'
 import { sanityClient } from '../lib/sanity/server'
 import { PostResponse } from '../typings'
 import Footer from '../components/Footer'
-import { useSession } from 'next-auth/react'
-import { useRecoilState } from 'recoil'
-import { authState } from '../recoil/auth'
-import { useEffect } from 'react'
-import { isEmpty } from 'lodash'
+
 import PostItem from '../components/PostItem'
 
 interface Props {
@@ -18,13 +14,13 @@ const MAX_RELATED_POSTS = 6
 
 export default function Home({ posts }: Props) {
   return (
-    <div className="relative min-h-[80vh]">
+    <div className="relative min-h-screen">
       <Head>
         <title>Blog.</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto min-h-screen max-w-7xl">
+      <main className="mx-auto max-w-7xl">
         <Header />
 
         {/* Banner */}
